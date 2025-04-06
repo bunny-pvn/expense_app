@@ -1,0 +1,8 @@
+{
+  "routes": {
+    "/expense_app": {},
+    "/expense_app/AddExpense": {},
+    "/expense_app/login": {},
+    "/expense_app/viewexpense": {}
+  }
+}
