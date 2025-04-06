@@ -1,0 +1,147 @@
+<div class="add-expense-container">
+  <div class="add-expense-overlay"></div>
+  <div class="add-expense-content">
+    <h2>Add New Expense</h2>
+
+    <form #expenseForm="ngForm" (ngSubmit)="onSubmit(expenseForm)">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" [(ngModel)]="expense.title" required #title="ngModel">
+        <div class="error" *ngIf="title?.invalid && title?.touched">Title is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" [(ngModel)]="expense.amount" required #amount="ngModel">
+        <div class="error" *ngIf="amount?.invalid && amount?.touched">Amount is required and must be a number.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <select id="category" name="category" [(ngModel)]="expense.category" required #category="ngModel">
+          <option value="" disabled selected>Select Category</option>
+          <option value="food">Food</option>
+          <option value="transport">Transport</option>
+          <option value="shopping">Shopping</option>
+          <option value="other">Other</option>
+        </select>
+        <div class="error" *ngIf="category?.invalid && category?.touched">Category is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" [(ngModel)]="expense.date" required #date="ngModel">
+        <div class="error" *ngIf="date?.invalid && date?.touched">Date is required.</div>
+      </div>
+
+      <button type="submit" class="submit-btn" [disabled]="expenseForm.invalid" [ngClass]="{'submit-condition': expenseForm.invalid}">
+        Add Expense
+      </button>
+    </form>
+  </div>
+</div>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- <div class="add-expense-container">
+    <div class="add-expense-overlay"></div>
+    <div class="add-expense-content">
+      <h2>Add New Expense</h2>
+  
+      <form #expenseForm="ngForm" (ngSubmit)="onSubmit(expenseForm)">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" [(ngModel)]="expense.title" required>
+          <div class="error" *ngIf="expenseForm.form.controls['title'].invalid && expenseForm.form.controls['title'].touched">Title is required.</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="amount">Amount:</label>
+          <input type="number" id="amount" name="amount" [(ngModel)]="expense.amount" required>
+          <div class="error" *ngIf="expenseForm.form.controls['amount'].invalid && expenseForm.form.controls['amount'].touched">Amount is required.</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <select id="category" name="category" [(ngModel)]="expense.category" required>
+            <option value="" disabled selected>Select Category</option>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="shopping">Shopping</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="error" *ngIf="expenseForm.form.controls['category']?.invalid && expenseForm.form.controls['category']?.touched">
+            Category is required.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" [(ngModel)]="expense.date" required>
+          <div class="error" *ngIf="expenseForm.form.controls['date']?.invalid && expenseForm.form.controls['date']?.touched">
+            Date is required.
+          </div>
+        </div>
+  
+        <button type="submit" class="submit-btn" [disabled]="expenseForm.invalid" [ngClass]="{'submit-condition':expenseForm.invalid}">Add Expense</button>
+      </form>
+    </div>
+  </div>
+
+-->
+
+
+<!-- previously working
+
+ <div class="add-expense-container">
+    <div class="add-expense-overlay"></div>
+    <div class="add-expense-content">
+      <h2>Add New Expense</h2>
+  
+      <form #expenseForm="ngForm" (ngSubmit)="onSubmit(expenseForm)">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" [(ngModel)]="expense.title" required #title="ngModel">
+          <div class="error" *ngIf="expenseForm.form.controls['title'].invalid && expenseForm.form.controls['title'].touched">Title is required.</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="amount">Amount:</label>
+          <input type="number" id="amount" name="amount" [(ngModel)]="expense.amount" required #amount="ngModel">
+          <div class="error" *ngIf="expenseForm.form.controls['amount'].invalid && expenseForm.form.controls['amount'].touched">Amount is required and must be a number.</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <select id="category" name="category" [(ngModel)]="expense.category" required #category="ngModel">
+            <option value="" disabled selected>Select Category</option>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="shopping">Shopping</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="error" *ngIf="expenseForm.form.controls['category'].invalid && expenseForm.form.controls['category'].touched">Category is required.</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" [(ngModel)]="expense.date" required #date="ngModel">
+          <div class="error" *ngIf="expenseForm.form.controls['date'].invalid && expenseForm.form.controls['date'].touched">Date is required.</div>
+        </div>
+  
+        <button type="submit" class="submit-btn" [disabled]="expenseForm.invalid" [ngClass]="{'submit-condition': expenseForm.invalid}">
+          Add Expense
+        </button>
+      </form>
+    </div>
+  </div>
+   -->

@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<script src="https://kit.fontawesome.com/bc6b0234c9.js" crossorigin="anonymous"></script>
+    <div class="out-expense">
+    <div class="expense-div" *ngFor="let expense of expenses">
+      <p>Title: {{ expense.title }}</p>
+      <p>Amount: {{ expense.amount }}</p>
+      <p>Category: {{ expense.category }}</p>
+      <div class="bottom-row">
+      <p class="date">Date: {{ expense.date }}</p>
+      <div class="icon-stack">
+        <i class="fa-solid fa-pen-to-square edit-icon" ></i>
+        <button title="delete" (click)="deleteExp(expense.id)"><i class="fa-solid fa-trash delete-icon"></i></button>
+      </div>
+    </div>
+    </div>
+  </div>
+

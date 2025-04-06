@@ -1,0 +1,14 @@
+<nav class="nav-bar">
+    <a [routerLink]="['']" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="AddExpense" [routerLinkActive]="'active'">Add Expense</a>
+    <a routerLink="viewexpense" [routerLinkActive]="'active'">View Expenses</a>
+    <!-- <a routerLink="Login" [routerLinkActive]="'active'" class="login-btn">Login</a> -->
+      <ng-container *ngIf="!currentUser; else logoutBlock">
+        <a routerLink="login" [routerLinkActive]="'active'" class="login-btn">Login</a>
+      </ng-container>
+    
+      <ng-template #logoutBlock>
+        <a routerLink="login" [routerLinkActive]="'active'" (click)="logout()" class="login-btn">Logout</a>
+      </ng-template>
+
+</nav>
