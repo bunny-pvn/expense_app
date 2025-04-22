@@ -30,8 +30,8 @@
 
       <div class="form-group">
         <label for="date">Date:</label>
-        <input type="date" id="date" name="date" [(ngModel)]="expense.date" required #date="ngModel">
-        <div class="error" *ngIf="date?.invalid && date?.touched">Date is required.</div>
+        <input type="date" id="date" name="date" [(ngModel)]="expense.date" [attr.max]="today" required #date="ngModel">
+        <div class="error" *ngIf="(date?.invalid && date?.touched) || isDateInvalid()">Date is invalid.</div>
       </div>
 
       <button type="submit" class="submit-btn" [disabled]="expenseForm.invalid" [ngClass]="{'submit-condition': expenseForm.invalid}">

@@ -6,7 +6,7 @@
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
         <div class="form-group">
           <label for="username">Username:</label>
-          <input type="text" id="username" name="username" [(ngModel)]="credentials.username" required #username="ngModel">
+          <input #userName type="text" id="username" name="username" [(ngModel)]="credentials.username" required #username="ngModel">
           <div class="error" *ngIf="username.invalid && username.touched">Username is required.</div>
         </div>
   

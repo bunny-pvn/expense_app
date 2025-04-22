@@ -1,70 +1,3 @@
-// import { Component, Output, EventEmitter} from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { FormsModule, NgForm} from '@angular/forms';
-// import { Expense } from '../Model/expense';
-// import { ExpenseService } from '../Services/expense.service';
-// @Component({
-//   selector: 'app-addexpense',
-//   imports: [CommonModule, FormsModule],
-//   templateUrl: './addexpense.component.html',
-//   styleUrl: './addexpense.component.css'
-// })
-// export class AddexpenseComponent{
-//   expense = {
-//     title: '',
-//     amount: '',
-//     category: '',
-//     date: ''
-//   };
-
-//   constructor(private expenseService: ExpenseService) {}
-//   @Output()
-//   EmitExpenseData: EventEmitter<Expense>=new EventEmitter<Expense>();
-
-//   onSubmit(form: NgForm) {
-//     if(form.valid){
-//       this.EmitExpenseData.emit(form.value);
-//       console.log("form submitted"); 
-//       form.reset();
-//     }
-//   }
- 
-
-//working one
-  // import { Component } from '@angular/core';
-  // import { CommonModule } from '@angular/common';
-  // import { FormsModule, NgForm } from '@angular/forms';
-  // import { Expense } from '../Model/expense';
-  // import { ExpenseService } from '../Services/expense.service';
-  
-  // @Component({
-  //   selector: 'app-addexpense',
-  //   imports: [CommonModule, FormsModule],
-  //   templateUrl: './addexpense.component.html',
-  //   styleUrl: './addexpense.component.css'
-  // })
-  // export class AddexpenseComponent {
-  //   expense: Expense = {
-  //     title: '',
-  //     amount: 0,
-  //     category: '',
-  //     date: ''
-  //   };
-  
-  //   constructor(private expenseService: ExpenseService) {}
-  
-  //   onSubmit(form: NgForm) {
-  //     if (form.valid) {
-  //       this.expenseService.addExpense(form.value); // Send data to service
-  //       console.log("Expense submitted:", form.value);
-  //       form.reset();
-  //     }
-  //   }
-  //   }
-  
-  
-
-
   // expense = {
   //   title: '',
   //   amount: null,
@@ -96,7 +29,7 @@
 
 //for firebase
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ExpenseService } from '../Services/expense.service';
@@ -108,10 +41,17 @@ import { Expense } from '../Model/expense';
   templateUrl: './addexpense.component.html',
   styleUrls: ['./addexpense.component.css'],
 })
-export class AddexpenseComponent {
-  expense: Expense = {title:'', amount: 0, category: '', date: '' };
+export class AddexpenseComponent implements OnInit {
+  
+  expense: Expense = {title:'', amount: null, category: '', date: '' };
+  today:string;
+  constructor(private expenseService: ExpenseService) {
+    
+  }
 
-  constructor(private expenseService: ExpenseService) {}
+  ngOnInit(): void{
+    this.today=new Date().toISOString().split('T')[0];
+  }
 
   onSubmit(form:NgForm) {
     this.expenseService.addExpense(this.expense).subscribe({
@@ -119,5 +59,11 @@ export class AddexpenseComponent {
       error: (error) => console.error('Error adding expense:', error),
     });
     form.reset();
+  }
+
+  isDateInvalid(): boolean{
+    const selectedDate = new Date(this.expense.date);
+    const currentDate = new Date(this.today);
+    return selectedDate > currentDate;
   }
 }

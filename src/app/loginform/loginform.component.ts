@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { AfterViewInit, Component, Renderer2 } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from './../Services/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -11,14 +11,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './loginform.component.html',
   styleUrls: ['./loginform.component.css']
 })
-export class LoginformComponent {
+export class LoginformComponent implements AfterViewInit{
 
   credentials = {
     username: '',
     password: ''
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private renderer:Renderer2) {}
+
+  @ViewChild('userName') usernameInput: ElementRef;
+  ngAfterViewInit(): void {
+   this.usernameInput.nativeElement.focus();
+  }
 
   onSubmit(form: any) {
     if (form.valid) {

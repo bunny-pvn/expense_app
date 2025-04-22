@@ -9,10 +9,16 @@
       <div class="bottom-row">
       <p class="date">Date: {{ expense.date }}</p>
       <div class="icon-stack">
-        <i class="fa-solid fa-pen-to-square edit-icon" ></i>
-        <button title="delete" (click)="deleteExp(expense.id)"><i class="fa-solid fa-trash delete-icon"></i></button>
+        <button title="edit" class="op-button" (click)="openUpdateForm(expense,expense.id)"><i class="fa-solid fa-pen-to-square edit-icon" ></i></button>
+        <button title="delete" class="op-button" (click)="deleteExp(expense.id)"><i class="fa-solid fa-trash delete-icon"></i></button>
       </div>
     </div>
     </div>
   </div>
 
+  <app-updateform 
+  *ngIf="isUpdateFormVisible" 
+  [expense]="selectedExpense" 
+  (update)="onUpdateExpense($event)"
+  (close)="closeUpdateForm()">
+</app-updateform>
